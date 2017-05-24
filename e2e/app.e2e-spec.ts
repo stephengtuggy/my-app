@@ -7,8 +7,8 @@ describe('my-app App', () => {
     page = new MyAppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying My First Angular CLI App', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('My First Angular CLI App');
   });
 });
