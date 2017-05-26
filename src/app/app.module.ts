@@ -13,7 +13,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { FoodDetailComponent } from './food-detail/food-detail.component';
 import { FoodListComponent } from './food-list/food-list.component';
 import { FoodSearchComponent } from './food-search/food-search.component';
-import { FoodService } from './food-service';
+import { FoodService } from './food.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -26,12 +26,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
-    AppRoutingModule
+    AppRoutingModule,
+    CoreModule
   ],
-  providers: [
-    AnimalService,
-    FoodService
-  ],
+  // providers: [
+  //   AnimalService,
+  //   FoodService
+  // ],
   declarations: [
     AppComponent,
     DashboardComponent,

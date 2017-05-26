@@ -11,9 +11,9 @@ import { FoodListComponent } from '../food-list/food-list.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'animal/:id', component: AnimalDetailComponent },
+  { path: 'animals/:id', component: AnimalDetailComponent },
   { path: 'animals', component: AnimalListComponent },
-  { path: 'food/:id', component: FoodDetailComponent },
+  { path: 'foods/:id', component: FoodDetailComponent },
   { path: 'foods', component: FoodListComponent }
 ];
 
