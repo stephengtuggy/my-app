@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-//import 'rxjs-extensions';
+// import 'rxjs-extensions';
 
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { AnimalListComponent } from './animal-list/animal-list.component';
