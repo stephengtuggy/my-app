@@ -26,7 +26,6 @@
     "angular-in-memory-web-api": "^0.6.1",
     "core-js": "^2.4.1",
     "rxjs": "^6.6.2",
-    "rxjs-compat": "^6.0.0-rc.0",
     "rxjs-tslint": "^0.1.8",
     "zone.js": "^0.8.4"
   },
