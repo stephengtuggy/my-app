@@ -7,8 +7,8 @@ describe('my-app App', () => {
     page = new MyAppPage();
   });
 
-  it('should display message saying My First Angular CLI App', () => {
+  it('should display message saying Zoo Example', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('My First Angular CLI App');
+    expect(page.getParagraphText()).toEqual('Zoo Example');
   });
 });
