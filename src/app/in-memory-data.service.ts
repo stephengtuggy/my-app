@@ -11,19 +11,19 @@ export class InMemoryDataService implements InMemoryDbService {
   constructor() { }
 
   createDb() {
-    let animals: Animal[] = [
+    const animals: Animal[] = [
       {id: 11, name: 'Elephant'},
       {id: 12, name: 'Zebra'},
       {id: 13, name: 'Monkey'},
       {id: 14, name: 'Human'}
     ];
-    let foods: Food[] = [
+    const foods: Food[] = [
       {id: 21, name: 'Hay'},
       {id: 22, name: 'Apples'},
       {id: 23, name: 'Bananas'},
       {id: 24, name: 'Bread'}
     ];
-    let animalsFoods: AnimalFood[] = [
+    const animalsFoods: AnimalFood[] = [
       {id: 31, animalID: 11, foodID: 21},
       {id: 32, animalID: 11, foodID: 24},
       {id: 33, animalID: 12, foodID: 21},
