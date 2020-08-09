@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import 'rxjs-extensions';
 
@@ -24,7 +24,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    // HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: true }),
     AppRoutingModule,
     CoreModule
