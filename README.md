@@ -1,6 +1,6 @@
 # MyApp
 
-[![stephengtuggy](https://circleci.com/gh/stephengtuggy/my-app.svg?style=svg)](https://circleci.com/gh/stephengtuggy/my-app)
+[![stephengtuggy](https://circleci.com/gh/stephengtuggy/my-app.svg?style=shield)](https://circleci.com/gh/stephengtuggy/my-app)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.4.
 
