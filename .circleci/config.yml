@@ -5,4 +5,5 @@ jobs:
       - image: 'circleci/node:dubnium-buster-browsers'
     steps:
       - checkout
-      - run: npm install && ng test --watch=false
+      - run: npm install
+      - run: ng test --watch=false
