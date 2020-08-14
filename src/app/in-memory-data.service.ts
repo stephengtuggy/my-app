@@ -5,7 +5,9 @@ import { Animal } from './animal.model';
 import { Food } from './food.model';
 import { AnimalFood } from './animal-food.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class InMemoryDataService implements InMemoryDbService {
 
   constructor() { }
@@ -34,6 +36,10 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: 38, animalID: 14, foodID: 24}
     ];
     return { animals, foods, animalsFoods };
+  }
+
+  genId(animals: Animal[]): number {
+    return animals.length > 0 ? Math.max(...animals.map(animal => animal.id)) + 1 : 11;
   }
 
 }
