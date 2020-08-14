@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-// import { HttpModule } from '@angular/http';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import 'rxjs-extensions';
 
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
@@ -19,13 +19,14 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    // HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: true }),
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     AppRoutingModule,
     CoreModule
   ],
@@ -41,7 +42,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AnimalSearchComponent,
     FoodDetailComponent,
     FoodListComponent,
-    FoodSearchComponent
+    FoodSearchComponent,
+    MessagesComponent
   ],
   bootstrap: [ AppComponent ]
 })
