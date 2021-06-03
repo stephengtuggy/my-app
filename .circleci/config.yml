@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: 'circleci/node:dubnium-buster-browsers'
+      - image: 'circleci/node:lts-buster-browsers'
     steps:
       - checkout
       - run: npm install
