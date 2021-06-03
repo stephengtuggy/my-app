@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Type } from '@angular/core';
 import { Location } from '@angular/common';
 import { MockPlatformLocation } from '@angular/common/testing';
@@ -188,7 +188,7 @@ describe('AnimalDetailComponent', () => {
   let initialMockParams: Params;
   let locationMock: MockPlatformLocation;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     initialMockParams = {id: 11};
     routeMock = new MockActivatedRoute(initialMockParams);
     locationMock = new MockPlatformLocation;
