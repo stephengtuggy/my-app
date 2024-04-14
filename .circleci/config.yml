@@ -10,11 +10,10 @@ jobs:
       - image: cimg/node:20.12.2-browsers
     steps:
       - browser-tools/install-browser-tools:
-          firefox-version: 80.0.1
+          firefox-version: 124.0.1
       - checkout
       - node/install:
           node-version: 20.12.2
       - node/install-packages:
           override-ci-command: npm ci --legacy-peer-deps
-      #- run: npm install --legacy-peer-deps
       - run: npm test
