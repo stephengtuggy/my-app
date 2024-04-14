@@ -13,5 +13,5 @@ jobs:
       - checkout
       - node/install:
           node-version: 20.12.2
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - run: npm test
