@@ -7,11 +7,12 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:20.12.2-browsers
     steps:
       #- browser-tools/install-browser-tools
       - checkout
-      - node/install:
-          node-version: 20.12.2
-      - run: npm install --legacy-peer-deps
+      #- node/install:
+      #    node-version: 20.12.2
+      - node/install-packages
+      #- run: npm install --legacy-peer-deps
       - run: npm test
