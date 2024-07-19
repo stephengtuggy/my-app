@@ -1,19 +1,19 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@5.2.0
   browser-tools: circleci/browser-tools@1.4.8
+
+executors:
+  my-docker-executor:
+    docker:
+      - image: cimg/node:20.15.1-browsers
 
 jobs:
   build:
-    docker:
-      - image: cimg/node:20.12.2-browsers
+    executor: my-docker-executor
     steps:
       - browser-tools/install-browser-tools:
-          firefox-version: 124.0.1
+          firefox-version: '128.0'
       - checkout
-      - node/install:
-          node-version: 20.12.2
-      - node/install-packages:
-          override-ci-command: npm ci --legacy-peer-deps
+      - run: npm ci --legacy-peer-deps
       - run: npm test
