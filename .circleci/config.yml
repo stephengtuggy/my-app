@@ -15,5 +15,5 @@ jobs:
       - browser-tools/install-browser-tools:
           firefox-version: '128.0'
       - checkout
-      - run: npm ci --legacy-peer-deps
+      - run: npm ci
       - run: npm test
