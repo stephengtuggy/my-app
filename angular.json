@@ -17,7 +17,6 @@
             "index": "src/index.html",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": [
-              "src/polyfills.ts",
               "zone.js"
             ],
             "assets": [
@@ -79,7 +78,6 @@
           "options": {
             "karmaConfig": "./karma.conf.js",
             "polyfills": [
-              "src/polyfills.ts",
               "zone.js",
               "zone.js/testing"
             ],

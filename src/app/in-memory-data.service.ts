@@ -35,7 +35,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: 37, animalID: 14, foodID: 23},
       {id: 38, animalID: 14, foodID: 24}
     ];
-    return { animals, foods, animalsFoods };
+    return { 'animals': animals, 'foods': foods, 'animalsFoods': animalsFoods };
   }
 
   genId(animals: Animal[]): number {

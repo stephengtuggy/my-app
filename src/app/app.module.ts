@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
+import {importProvidersFrom, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {provideHttpClient, withFetch, withInterceptorsFromDi} from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import 'rxjs-extensions';
 
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { AnimalListComponent } from './animal-list/animal-list.component';
@@ -17,15 +16,16 @@ import { FoodService } from './food.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
-    // providers: [
-    //   AnimalService,
-    //   FoodService
-    // ],
+    providers: [
+      provideHttpClient(withInterceptorsFromDi()),
+      importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })),
+      AnimalService,
+      FoodService
+    ],
     declarations: [
         AppComponent,
         DashboardComponent,
@@ -37,9 +37,10 @@ import { MessagesComponent } from './messages/messages.component';
         FoodSearchComponent,
         MessagesComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent],
+    imports: [BrowserModule,
         FormsModule,
-        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
         AppRoutingModule,
-        CoreModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        CoreModule
+    ]})
 export class AppModule { }
