@@ -2,12 +2,13 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {Type} from '@angular/core';
 import {Location} from '@angular/common';
 import {MockPlatformLocation} from '@angular/common/testing';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import {ActivatedRoute, Params} from '@angular/router';
 
 import {AnimalDetailComponent} from './animal-detail.component';
 import {Animal} from '../animal.model';
 import {MockActivatedRoute} from './mock-activated.route';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 describe('AnimalDetailComponent', () => {
@@ -24,19 +25,19 @@ describe('AnimalDetailComponent', () => {
     routeMock = new MockActivatedRoute(null);
     locationMock = new MockPlatformLocation;
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ],
-      declarations: [ AnimalDetailComponent ],
-      providers: [
+    declarations: [AnimalDetailComponent],
+    imports: [],
+    providers: [
         {
-          provide: ActivatedRoute, useValue: routeMock,
+            provide: ActivatedRoute, useValue: routeMock,
         },
         {
-          provide: Location, useValue: locationMock,
-        }
-      ]
-    })
+            provide: Location, useValue: locationMock,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
     .compileComponents();
   }));
 

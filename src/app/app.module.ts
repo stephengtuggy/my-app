@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
+import { importProvidersFrom, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import 'rxjs-extensions';
 
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { AnimalListComponent } from './animal-list/animal-list.component';
@@ -17,34 +16,31 @@ import { FoodService } from './food.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-    AppRoutingModule,
-    CoreModule
-  ],
-  // providers: [
-  //   AnimalService,
-  //   FoodService
-  // ],
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    AnimalDetailComponent,
-    AnimalListComponent,
-    AnimalSearchComponent,
-    FoodDetailComponent,
-    FoodListComponent,
-    FoodSearchComponent,
-    MessagesComponent
-  ],
-  bootstrap: [ AppComponent ]
-})
+    providers: [
+      provideHttpClient(withInterceptorsFromDi()),
+      importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })),
+      AnimalService,
+      FoodService
+    ],
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        AnimalDetailComponent,
+        AnimalListComponent,
+        AnimalSearchComponent,
+        FoodDetailComponent,
+        FoodListComponent,
+        FoodSearchComponent,
+        MessagesComponent
+    ],
+    bootstrap: [AppComponent],
+    imports: [BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        CoreModule
+    ]})
 export class AppModule { }

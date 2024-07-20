@@ -12,15 +12,18 @@ import { MessageService } from './message.service';
   providedIn: 'root',
 })
 export class AnimalService {
-  private animalsUrl = 'api/animals';
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  private readonly animalsUrl = `api/animals`;
+  private readonly httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    })
   };
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   getAnimals(): Observable<Animal[]> {
-    return this.http.get<Animal[]>(this.animalsUrl)
+    return this.http.get<Animal[]>(this.animalsUrl, { headers: this.httpOptions.headers, responseType: 'json' })
       .pipe(
         tap(_ => this.log('fetched animals')),
         catchError(this.handleError<Animal[]>('getAnimals', []))
