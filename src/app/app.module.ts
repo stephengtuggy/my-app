@@ -21,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessagesComponent } from './messages/messages.component';
 
-@NgModule({ 
+@NgModule({
     // providers: [
     //   AnimalService,
     //   FoodService
