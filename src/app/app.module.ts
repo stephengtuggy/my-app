@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import 'rxjs-extensions';
 
@@ -21,30 +21,25 @@ import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessagesComponent } from './messages/messages.component';
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-    AppRoutingModule,
-    CoreModule
-  ],
-  // providers: [
-  //   AnimalService,
-  //   FoodService
-  // ],
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    AnimalDetailComponent,
-    AnimalListComponent,
-    AnimalSearchComponent,
-    FoodDetailComponent,
-    FoodListComponent,
-    FoodSearchComponent,
-    MessagesComponent
-  ],
-  bootstrap: [ AppComponent ]
-})
+@NgModule({ 
+    // providers: [
+    //   AnimalService,
+    //   FoodService
+    // ],
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        AnimalDetailComponent,
+        AnimalListComponent,
+        AnimalSearchComponent,
+        FoodDetailComponent,
+        FoodListComponent,
+        FoodSearchComponent,
+        MessagesComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+        AppRoutingModule,
+        CoreModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

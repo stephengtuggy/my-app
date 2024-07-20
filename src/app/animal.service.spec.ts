@@ -1,19 +1,19 @@
 import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { Type } from '@angular/core';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { Animal } from './animal.model';
 import { AnimalService } from './animal.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('AnimalService', () => {
   let httpMock: HttpTestingController;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ],
-    })
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
   }));
 
   beforeEach(() => {
