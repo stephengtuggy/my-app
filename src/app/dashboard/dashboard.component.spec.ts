@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Type } from '@angular/core';
+import {Component, Type} from '@angular/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { DashboardComponent } from './dashboard.component';
@@ -15,17 +15,18 @@ describe('DashboardComponent', () => {
       imports: [
         HttpClientTestingModule
       ],
-      declarations: [ DashboardComponent ]
+      declarations: [
+        DashboardComponent,
+        MockAnimalSearchComponent
+      ]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     httpMock = fixture.debugElement.injector.get<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
     fixture.detectChanges();
-  });
+  }));
 
   afterEach(() => {
     httpMock.verify();
@@ -39,3 +40,9 @@ describe('DashboardComponent', () => {
     req.flush(dummyAnimals);
   });
 });
+
+@Component({
+  selector: 'app-animal-search',
+  template: ''
+})
+class MockAnimalSearchComponent {}

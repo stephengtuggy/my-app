@@ -1,12 +1,15 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import {Component, OnInit} from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        MockRouterOutlet,
+        MockMessageOutlet
       ],
     }).compileComponents();
   }));
@@ -30,3 +33,15 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Zoo Example');
   }));
 });
+
+@Component({
+  selector: 'router-outlet',
+  template: ''
+})
+class MockRouterOutlet {}
+
+@Component({
+  selector: 'app-messages',
+  template: ''
+})
+class MockMessageOutlet {}
