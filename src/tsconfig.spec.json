@@ -1,12 +1,30 @@
 {
-  "extends": "../tsconfig.base.json",
+  "angularCompilerOptions": {
+    "preserveWhitespaces": "off"
+  },
+  "compileOnSave": false,
   "compilerOptions": {
+    "downlevelIteration": true,
+    "importHelpers": true,
     "outDir": "../out-tsc/spec",
     "baseUrl": "",
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "target": "ES2022",
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "module": "ES2022"
   },
   "files": [
     "polyfills.ts"
