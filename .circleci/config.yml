@@ -6,7 +6,7 @@ orbs:
 executors:
   my-docker-executor:
     docker:
-      - image: cimg/node:20.15.1-browsers
+      - image: cimg/node:22.5.1-browsers
 
 jobs:
   build:
