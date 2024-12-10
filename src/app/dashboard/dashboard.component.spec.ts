@@ -42,7 +42,8 @@ describe('DashboardComponent', () => {
 });
 
 @Component({
-  selector: 'app-animal-search',
-  template: ''
+    selector: 'app-animal-search',
+    template: '',
+    standalone: false
 })
 class MockAnimalSearchComponent {}
