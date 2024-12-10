@@ -6,9 +6,10 @@ import { Animal } from '../animal.model';
 import { AnimalService } from '../animal.service';
 
 @Component({
-  selector: 'app-animal-detail',
-  templateUrl: './animal-detail.component.html',
-  styleUrls: ['./animal-detail.component.css']
+    selector: 'app-animal-detail',
+    templateUrl: './animal-detail.component.html',
+    styleUrls: ['./animal-detail.component.css'],
+    standalone: false
 })
 export class AnimalDetailComponent implements OnInit {
   animal: Animal;

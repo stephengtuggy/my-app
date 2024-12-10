@@ -10,9 +10,10 @@ import { Animal } from '../animal.model';
 import { AnimalService } from '../animal.service';
 
 @Component({
-  selector: 'app-animal-search',
-  templateUrl: './animal-search.component.html',
-  styleUrls: ['./animal-search.component.css']
+    selector: 'app-animal-search',
+    templateUrl: './animal-search.component.html',
+    styleUrls: ['./animal-search.component.css'],
+    standalone: false
 })
 export class AnimalSearchComponent implements OnInit {
   animals$: Observable<Animal[]>;

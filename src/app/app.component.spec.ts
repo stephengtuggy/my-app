@@ -35,13 +35,15 @@ describe('AppComponent', () => {
 });
 
 @Component({
-  selector: 'router-outlet',
-  template: ''
+    selector: 'router-outlet',
+    template: '',
+    standalone: false
 })
 class MockRouterOutlet {}
 
 @Component({
-  selector: 'app-messages',
-  template: ''
+    selector: 'app-messages',
+    template: '',
+    standalone: false
 })
 class MockMessageOutlet {}
