@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "^20.0.2",
     "@angular/platform-server": "^20.0.2",
     "@angular/router": "^20.0.2",
-    "angular-in-memory-web-api": "0.19.0",
+    "angular-in-memory-web-api": "^0.20.0",
     "core-js": "^3.0.0",
     "jasmine": "^5.1.0",
     "rxjs": "^7.0.0",
