@@ -1,19 +1,19 @@
 version: 2.1
 
 orbs:
-  browser-tools: circleci/browser-tools@1.5.3
+  browser-tools: circleci/browser-tools@2.1.0
 
 executors:
   my-docker-executor:
     docker:
-      - image: cimg/node:22.16.0-browsers
+      - image: cimg/node:24.1.0-browsers
 
 jobs:
   build:
     executor: my-docker-executor
     steps:
       - browser-tools/install-browser-tools:
-          firefox-version: '128.0'
+          firefox-version: '139.0.1'
       - checkout
       - run: npm ci
       - run: npm test
