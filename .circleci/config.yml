@@ -13,7 +13,7 @@ jobs:
     executor: my-docker-executor
     steps:
       - browser-tools/install_browser_tools:
-          firefox-version: '139.0.1'
+          firefox_version: '139.0.1'
       - checkout
       - run: npm ci
       - run: npm test
