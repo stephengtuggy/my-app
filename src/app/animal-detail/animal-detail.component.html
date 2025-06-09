@@ -1,14 +1,13 @@
-<div *ngIf="animal">
-
-  <h2>{{animal.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{animal.id}}</div>
+@if (animal) {
   <div>
-    <label>name:
-      <input [(ngModel)]="animal.name" placeholder="name" />
-    </label>
+    <h2>{{animal.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{animal.id}}</div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="animal.name" placeholder="name" />
+      </label>
+    </div>
+    <button (click)="goBack()">go back</button>
+    <button (click)="save()">save</button>
   </div>
-
-  <button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>
-
-</div>
+}
