@@ -10,11 +10,13 @@
 </div>
 
 <ul class="animals">
-  <li *ngFor="let animal of animals">
-    <a routerLink="/animals/{{animal.id}}">
-      <span class="badge">{{animal.id}}</span> {{animal.name}}
-    </a>
-    <button class="delete" title="delete animal"
+  @for (animal of animals; track animal) {
+    <li>
+      <a routerLink="/animals/{{animal.id}}">
+        <span class="badge">{{animal.id}}</span> {{animal.name}}
+      </a>
+      <button class="delete" title="delete animal"
       (click)="delete(animal)">x</button>
-  </li>
+    </li>
+  }
 </ul>
