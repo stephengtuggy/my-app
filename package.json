@@ -18,7 +18,7 @@
     "@angular/core": "^20.0.2",
     "@angular/forms": "^20.0.2",
     "@angular/platform-browser": "^20.0.2",
-    "@angular/platform-browser-dynamic": "^20.0.2",
+    "@angular/platform-browser-dynamic": "^20.1.4",
     "@angular/platform-server": "^20.0.2",
     "@angular/router": "^20.0.2",
     "angular-in-memory-web-api": "^0.20.0",
