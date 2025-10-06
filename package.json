@@ -19,7 +19,7 @@
     "@angular/forms": "20.2.4",
     "@angular/platform-browser": "20.2.4",
     "@angular/platform-browser-dynamic": "20.2.4",
-    "@angular/platform-server": "20.2.4",
+    "@angular/platform-server": "20.3.3",
     "@angular/router": "20.2.4",
     "angular-in-memory-web-api": "^0.20.0",
     "core-js": "^3.0.0",
