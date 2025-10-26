@@ -17,6 +17,8 @@ on:
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
+    permissions:
+      contents: read
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
 
     strategy:
