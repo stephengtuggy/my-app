@@ -1,11 +1,28 @@
-import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
+import { enableProdMode, provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
 
-import { AppModule } from './app/app.module';
+
 import { environment } from './environments/environment';
-import { platformBrowser } from "@angular/platform-browser";
+import { platformBrowser, BrowserModule, bootstrapApplication } from "@angular/platform-browser";
+import { provideHttpClient, withXhr, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './app/in-memory-data.service';
+import { AnimalService } from './app/animal.service';
+import { FoodService } from './app/food.service';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app/app-routing/app-routing.module';
+import { CoreModule } from './app/core/core.module';
+import { AppComponent } from './app/app.component';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowser().bootstrapModule(AppModule, { applicationProviders: [provideZoneChangeDetection()], });
+bootstrapApplication(AppComponent, {
+    providers: [
+        importProvidersFrom(BrowserModule, FormsModule, AppRoutingModule, CoreModule),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })),
+        AnimalService,
+        FoodService
+    ]
+});
