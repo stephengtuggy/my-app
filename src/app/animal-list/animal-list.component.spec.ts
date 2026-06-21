@@ -4,7 +4,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 
 import { AnimalListComponent } from './animal-list.component';
 import { Animal } from '../animal.model';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('AnimalListComponent', () => {
   let component: AnimalListComponent;
@@ -15,7 +15,7 @@ describe('AnimalListComponent', () => {
     TestBed.configureTestingModule({
     declarations: [AnimalListComponent],
     imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

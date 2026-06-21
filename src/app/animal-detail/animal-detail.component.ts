@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -9,6 +9,7 @@ import { AnimalService } from '../animal.service';
     selector: 'app-animal-detail',
     templateUrl: './animal-detail.component.html',
     styleUrls: ['./animal-detail.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AnimalDetailComponent implements OnInit {

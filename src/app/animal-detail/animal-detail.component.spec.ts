@@ -8,7 +8,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {AnimalDetailComponent} from './animal-detail.component';
 import {Animal} from '../animal.model';
 import {MockActivatedRoute} from './mock-activated.route';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
 describe('AnimalDetailComponent', () => {
@@ -34,7 +34,7 @@ describe('AnimalDetailComponent', () => {
         {
             provide: Location, useValue: locationMock,
         },
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting()
     ]
 })

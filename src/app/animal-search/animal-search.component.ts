@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
@@ -13,6 +13,7 @@ import { AnimalService } from '../animal.service';
     selector: 'app-animal-search',
     templateUrl: './animal-search.component.html',
     styleUrls: ['./animal-search.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AnimalSearchComponent implements OnInit {

@@ -3,7 +3,7 @@ import { Type } from '@angular/core';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { AnimalSearchComponent } from './animal-search.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('AnimalSearchComponent', () => {
   let component: AnimalSearchComponent;
@@ -14,7 +14,7 @@ describe('AnimalSearchComponent', () => {
     TestBed.configureTestingModule({
     declarations: [AnimalSearchComponent],
     imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

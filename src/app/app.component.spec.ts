@@ -1,7 +1,7 @@
 import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
@@ -37,6 +37,7 @@ describe('AppComponent', () => {
 @Component({
     selector: 'router-outlet',
     template: '',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class MockRouterOutlet {}
@@ -44,6 +45,7 @@ class MockRouterOutlet {}
 @Component({
     selector: 'app-messages',
     template: '',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class MockMessageOutlet {}

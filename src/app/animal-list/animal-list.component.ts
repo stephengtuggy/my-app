@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Animal } from '../animal.model';
 import { AnimalService } from '../animal.service';
@@ -7,6 +7,7 @@ import { AnimalService } from '../animal.service';
     selector: 'app-animal-list',
     templateUrl: './animal-list.component.html',
     styleUrls: ['./animal-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AnimalListComponent implements OnInit {

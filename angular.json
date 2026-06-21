@@ -52,6 +52,13 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "testing": {
+              "aot": false,
+              "polyfills": [
+                "zone.js",
+                "zone.js/testing"
+              ]
             }
           },
           "defaultConfiguration": ""
@@ -74,22 +81,14 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "karmaConfig": "./karma.conf.js",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [],
-            "styles": [
-              "src/styles.css"
+            "reporters": [
+              "default"
             ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         },
         "lint": {
