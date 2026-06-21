@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
-import { Animal } from '../animal.model';
-import { AnimalService } from '../animal.service';
-import { RouterLink } from '@angular/router';
-import { AnimalSearchComponent } from '../animal-search/animal-search.component';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
+import {Animal} from '../animal.model';
+import {AnimalService} from '../animal.service';
+import {RouterLink} from '@angular/router';
+import {AnimalSearchComponent} from '../animal-search/animal-search.component';
 
 @Component({
     selector: 'app-dashboard',
@@ -12,18 +12,19 @@ import { AnimalSearchComponent } from '../animal-search/animal-search.component'
     imports: [RouterLink, AnimalSearchComponent]
 })
 export class DashboardComponent implements OnInit {
-  private animalService = inject(AnimalService);
+    private animalService = inject(AnimalService);
 
-  animals: Animal[] = [];
+    animals: Animal[] = [];
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-    this.getAnimals();
-  }
+    ngOnInit() {
+        this.getAnimals();
+    }
 
-  getAnimals(): void {
-    this.animalService.getAnimals()
-      .subscribe(animals => this.animals = animals.slice(0, 4));
-  }
+    getAnimals(): void {
+        this.animalService.getAnimals()
+            .subscribe((animals: Animal[]) => this.animals = animals.slice(0, 4));
+    }
 }

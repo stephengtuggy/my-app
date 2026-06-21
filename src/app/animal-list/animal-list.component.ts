@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 
-import { Animal } from '../animal.model';
-import { AnimalService } from '../animal.service';
-import { RouterLink } from '@angular/router';
+import {Animal} from '../animal.model';
+import {AnimalService} from '../animal.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
     selector: 'app-animal-list',
@@ -12,34 +12,35 @@ import { RouterLink } from '@angular/router';
     imports: [RouterLink]
 })
 export class AnimalListComponent implements OnInit {
-  private animalService = inject(AnimalService);
+    private animalService = inject(AnimalService);
 
-  animals: Animal[] = new Array<Animal>();
+    animals: Animal[] = new Array<Animal>();
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.getAnimals();
-  }
-
-  getAnimals(): void {
-    this.animalService.getAnimals()
-        .subscribe(animals => this.animals = animals);
-  }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
+    constructor() {
     }
-    this.animalService.addAnimal({ name } as Animal)
-      .subscribe(animal => {
-        this.animals.push(animal);
-      });
-  }
 
-  delete(animal: Animal): void {
-    this.animals = this.animals.filter(a => a !== animal);
-    this.animalService.deleteAnimal(animal).subscribe();
-  }
+    ngOnInit(): void {
+        this.getAnimals();
+    }
+
+    getAnimals(): void {
+        this.animalService.getAnimals()
+            .subscribe((animals: Animal[]) => this.animals = animals);
+    }
+
+    add(name: string): void {
+        name = name.trim();
+        if (!name) {
+            return;
+        }
+        this.animalService.addAnimal({name} as Animal)
+            .subscribe((animal: Animal) => {
+                this.animals.push(animal);
+            });
+    }
+
+    delete(animal: Animal): void {
+        this.animals = this.animals.filter(a => a !== animal);
+        this.animalService.deleteAnimal(animal).subscribe((_animal: Animal) => this.getAnimals());
+    }
 }
