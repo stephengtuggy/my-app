@@ -7,7 +7,7 @@
       }
     },
     "preserveWhitespaces": "off",
-    "strictTemplates": false
+    "strictTemplates": true
   },
   "compileOnSave": false,
   "compilerOptions": {
