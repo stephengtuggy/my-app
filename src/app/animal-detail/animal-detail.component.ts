@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -13,13 +13,13 @@ import { AnimalService } from '../animal.service';
     standalone: false
 })
 export class AnimalDetailComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private animalService = inject(AnimalService);
+  private location = inject(Location);
+
   animal: Animal | undefined = undefined;
 
-  constructor(
-    private route: ActivatedRoute,
-    private animalService: AnimalService,
-    private location: Location
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.getAnimal();

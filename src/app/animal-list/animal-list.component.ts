@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 
 import { Animal } from '../animal.model';
 import { AnimalService } from '../animal.service';
@@ -11,9 +11,11 @@ import { AnimalService } from '../animal.service';
     standalone: false
 })
 export class AnimalListComponent implements OnInit {
+  private animalService = inject(AnimalService);
+
   animals: Animal[] = new Array<Animal>();
 
-  constructor(private animalService: AnimalService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.getAnimals();

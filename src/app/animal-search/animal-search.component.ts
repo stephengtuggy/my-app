@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
@@ -17,10 +17,12 @@ import { AnimalService } from '../animal.service';
     standalone: false
 })
 export class AnimalSearchComponent implements OnInit {
+  private animalService = inject(AnimalService);
+
   animals$: Observable<Animal[]> | undefined = undefined;
   private searchTerms = new Subject<string>();
 
-  constructor(private animalService: AnimalService) { }
+  constructor() { }
 
   search(term: string): void {
     this.searchTerms.next(term);

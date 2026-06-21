@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
@@ -12,6 +12,9 @@ import { MessageService } from './message.service';
   providedIn: 'root',
 })
 export class AnimalService {
+  private http = inject(HttpClient);
+  private messageService = inject(MessageService);
+
   private readonly animalsUrl = `api/animals`;
   private readonly httpOptions = {
     headers: new HttpHeaders({
@@ -20,7 +23,7 @@ export class AnimalService {
     })
   };
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  constructor() { }
 
   getAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>(this.animalsUrl, { headers: this.httpOptions.headers, responseType: 'json' })
