@@ -4,8 +4,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     selector: 'app-food-detail',
     templateUrl: './food-detail.component.html',
     styleUrls: ['./food-detail.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class FoodDetailComponent implements OnInit {
 

@@ -8,8 +8,8 @@ describe('FoodSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FoodSearchComponent ]
-    })
+    imports: [FoodSearchComponent]
+})
     .compileComponents();
   }));
 

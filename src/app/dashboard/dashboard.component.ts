@@ -1,13 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Animal } from '../animal.model';
 import { AnimalService } from '../animal.service';
+import { RouterLink } from '@angular/router';
+import { AnimalSearchComponent } from '../animal-search/animal-search.component';
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink, AnimalSearchComponent]
 })
 export class DashboardComponent implements OnInit {
   private animalService = inject(AnimalService);

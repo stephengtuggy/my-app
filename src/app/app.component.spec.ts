@@ -6,12 +6,10 @@ import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        MockRouterOutlet,
-        MockMessageOutlet
-      ],
-    }).compileComponents();
+    imports: [MockRouterOutlet,
+        MockMessageOutlet],
+    declarations: [AppComponent],
+}).compileComponents();
   }));
 
   it('should create the app', waitForAsync(() => {
@@ -37,15 +35,13 @@ describe('AppComponent', () => {
 @Component({
     selector: 'router-outlet',
     template: '',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 class MockRouterOutlet {}
 
 @Component({
     selector: 'app-messages',
     template: '',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 class MockMessageOutlet {}

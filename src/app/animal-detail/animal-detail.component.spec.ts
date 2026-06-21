@@ -25,8 +25,7 @@ describe('AnimalDetailComponent', () => {
     routeMock = new MockActivatedRoute(null);
     locationMock = new MockPlatformLocation;
     TestBed.configureTestingModule({
-    declarations: [AnimalDetailComponent],
-    imports: [],
+    imports: [AnimalDetailComponent],
     providers: [
         {
             provide: ActivatedRoute, useValue: routeMock,

@@ -1,16 +1,17 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, UpperCasePipe } from '@angular/common';
 
 import { Animal } from '../animal.model';
 import { AnimalService } from '../animal.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-animal-detail',
     templateUrl: './animal-detail.component.html',
     styleUrls: ['./animal-detail.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [FormsModule, UpperCasePipe]
 })
 export class AnimalDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);

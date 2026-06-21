@@ -2,13 +2,14 @@ import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/cor
 
 import { Animal } from '../animal.model';
 import { AnimalService } from '../animal.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-animal-list',
     templateUrl: './animal-list.component.html',
     styleUrls: ['./animal-list.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink]
 })
 export class AnimalListComponent implements OnInit {
   private animalService = inject(AnimalService);

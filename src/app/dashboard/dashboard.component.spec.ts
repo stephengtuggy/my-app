@@ -13,11 +13,8 @@ describe('DashboardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [
-        DashboardComponent,
-        MockAnimalSearchComponent
-    ],
-    imports: [],
+    imports: [DashboardComponent,
+        MockAnimalSearchComponent],
     providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
@@ -44,7 +41,6 @@ describe('DashboardComponent', () => {
 @Component({
     selector: 'app-animal-search',
     template: '',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 class MockAnimalSearchComponent {}

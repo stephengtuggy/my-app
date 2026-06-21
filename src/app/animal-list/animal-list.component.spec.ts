@@ -13,8 +13,7 @@ describe('AnimalListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [AnimalListComponent],
-    imports: [],
+    imports: [AnimalListComponent],
     providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();

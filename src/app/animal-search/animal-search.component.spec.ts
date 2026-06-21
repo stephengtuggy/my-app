@@ -12,8 +12,7 @@ describe('AnimalSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [AnimalSearchComponent],
-    imports: [],
+    imports: [AnimalSearchComponent],
     providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();

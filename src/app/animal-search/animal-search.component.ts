@@ -8,13 +8,15 @@ import {
 
 import { Animal } from '../animal.model';
 import { AnimalService } from '../animal.service';
+import { RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-animal-search',
     templateUrl: './animal-search.component.html',
     styleUrls: ['./animal-search.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink, AsyncPipe]
 })
 export class AnimalSearchComponent implements OnInit {
   private animalService = inject(AnimalService);

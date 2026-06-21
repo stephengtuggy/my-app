@@ -21,26 +21,23 @@ import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
     providers: [
-      provideHttpClient(withXhr(), withInterceptorsFromDi()),
-      importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })),
-      AnimalService,
-      FoodService
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })),
+        AnimalService,
+        FoodService
     ],
-    declarations: [
-        AppComponent,
-        DashboardComponent,
+    declarations: [AppComponent],
+    bootstrap: [AppComponent],
+    imports: [BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        CoreModule, DashboardComponent,
         AnimalDetailComponent,
         AnimalListComponent,
         AnimalSearchComponent,
         FoodDetailComponent,
         FoodListComponent,
         FoodSearchComponent,
-        MessagesComponent
-    ],
-    bootstrap: [AppComponent],
-    imports: [BrowserModule,
-        FormsModule,
-        AppRoutingModule,
-        CoreModule
-    ]})
+        MessagesComponent]
+})
 export class AppModule { }
