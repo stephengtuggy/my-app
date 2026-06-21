@@ -11,7 +11,7 @@ import { AnimalService } from '../animal.service';
     standalone: false
 })
 export class AnimalListComponent implements OnInit {
-  animals: Animal[];
+  animals: Animal[] = new Array<Animal>();
 
   constructor(private animalService: AnimalService) { }
 

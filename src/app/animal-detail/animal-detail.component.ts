@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Animal } from '../animal.model';
@@ -13,7 +13,7 @@ import { AnimalService } from '../animal.service';
     standalone: false
 })
 export class AnimalDetailComponent implements OnInit {
-  animal: Animal;
+  animal: Animal | undefined = undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class AnimalDetailComponent implements OnInit {
   }
 
   getAnimal(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id: number = +(this.route?.snapshot?.paramMap?.get('id') ?? 0);
     this.animalService.getAnimal(id)
       .subscribe(animal => this.animal = animal);
   }
@@ -36,7 +36,7 @@ export class AnimalDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.animalService.updateAnimal(this.animal)
+    this.animalService.updateAnimal((this.animal as Animal))
       .subscribe(() => this.goBack());
   }
 

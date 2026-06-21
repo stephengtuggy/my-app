@@ -17,7 +17,7 @@ import { AnimalService } from '../animal.service';
     standalone: false
 })
 export class AnimalSearchComponent implements OnInit {
-  animals$: Observable<Animal[]>;
+  animals$: Observable<Animal[]> | undefined = undefined;
   private searchTerms = new Subject<string>();
 
   constructor(private animalService: AnimalService) { }
