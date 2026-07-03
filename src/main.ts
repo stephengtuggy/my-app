@@ -1,8 +1,8 @@
-import { enableProdMode, provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
 
 
 import { environment } from './environments/environment';
-import { platformBrowser, BrowserModule, bootstrapApplication } from "@angular/platform-browser";
+import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { provideHttpClient, withXhr, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './app/in-memory-data.service';
