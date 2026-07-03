@@ -1,7 +1,7 @@
 <h3>Top Animals</h3>
 
 <div class="grid grid-pad">
-  @for (animal of animals; track animal) {
+  @for (animal of animals$ | async; track animal) {
     <a class="col-1-4"
       routerLink="/animals/{{animal.id}}">
       <div class="module animal">
