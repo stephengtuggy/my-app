@@ -1,13 +1,15 @@
-@if (animal) {
-  <div>
-    <h2>{{animal.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{animal.id}}</div>
+@if (animalModel()) {
     <div>
-      <label>name:
-        <input [(ngModel)]="animal.name" placeholder="name" />
-      </label>
+        <form>
+            <h2>{{ animalForm.animalName().value() | uppercase }} Details</h2>
+            <div>id: {{ animalForm.id().value() }}</div>
+            <div>
+                <label>name:
+                    <input type='text' [formField]="animalForm.animalName" placeholder="name"/>
+                </label>
+            </div>
+            <button (click)="goBack()">go back</button>
+            <button (click)="save()">save</button>
+        </form>
     </div>
-    <button (click)="goBack()">go back</button>
-    <button (click)="save()">save</button>
-  </div>
 }

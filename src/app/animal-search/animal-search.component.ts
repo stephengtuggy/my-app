@@ -1,46 +1,27 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import {ChangeDetectionStrategy, Component, debounced, inject, signal} from '@angular/core';
+import {AnimalService} from '../animal.service';
+import {RouterLink} from '@angular/router';
+import {rxResource} from "@angular/core/rxjs-interop";
 
-import { Observable, Subject } from 'rxjs';
-
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from 'rxjs/operators';
-
-import { Animal } from '../animal.model';
-import { AnimalService } from '../animal.service';
-import { RouterLink } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-animal-search',
     templateUrl: './animal-search.component.html',
     styleUrls: ['./animal-search.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [RouterLink, AsyncPipe]
+    imports: [RouterLink]
 })
-export class AnimalSearchComponent implements OnInit {
-  private animalService = inject(AnimalService);
+export class AnimalSearchComponent {
+    private animalService = inject(AnimalService);
 
-  animals$: Observable<Animal[]> | undefined = undefined;
-  private searchTerms = new Subject<string>();
+    protected query = signal('');
+    protected debouncedQuery = debounced(this.query, 300);
 
-  constructor() { }
+    protected resultsResource = rxResource({
+        params: () => this.debouncedQuery.value(),
+        stream: ({params}) => this.animalService.searchAnimals(params),
+    });
 
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
-
-  ngOnInit(): void {
-    this.animals$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
-
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-
-      // switch to new search observable each time the term changes
-      switchMap((term: string) => this.animalService.searchAnimals(term)),
-    );
-  }
-
+    constructor() {
+    }
 }

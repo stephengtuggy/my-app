@@ -1,3 +1,26 @@
-<p>
-  food-list works!
-</p>
+<h2>Foods</h2>
+
+<div>
+    <label>Food name:
+        <input #foodName/>
+    </label>
+    <button (click)="add(foodName.value); foodName.value=''">
+        add
+    </button>
+</div>
+
+<ul class="foods">
+    @if (foodsResource.isLoading()) {
+        <p>Loading…</p>
+    }
+    @for (food of foodsResource.value(); track food.id) {
+        <li>
+            <a routerLink="/foods/{{food.id}}">
+                <span class="badge">{{ food.id }}</span> {{ food.name }}
+            </a>
+            <button class="delete" title="delete food"
+                    (click)="delete(food)">x
+            </button>
+        </li>
+    }
+</ul>

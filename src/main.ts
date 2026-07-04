@@ -5,7 +5,7 @@ import { environment } from './environments/environment';
 import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { provideHttpClient, withXhr, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './app/in-memory-data.service';
+import { InMemoryOverrideAnimalDataService } from './app/in-memory-override-animal-data.service';
 import { AnimalService } from './app/animal.service';
 import { FoodService } from './app/food.service';
 import { FormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ bootstrapApplication(AppComponent, {
     providers: [
         importProvidersFrom(BrowserModule, FormsModule, AppRoutingModule, CoreModule),
         provideHttpClient(withXhr(), withInterceptorsFromDi()),
-        importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })),
+        importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryOverrideAnimalDataService, { delay: 600 })),
         AnimalService,
         FoodService
     ]

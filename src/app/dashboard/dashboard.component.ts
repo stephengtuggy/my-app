@@ -1,27 +1,25 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
-import { AsyncPipe } from '@angular/common';
-import {Animal} from '../animal.model';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AnimalService} from '../animal.service';
 import {RouterLink} from '@angular/router';
 import {AnimalSearchComponent} from '../animal-search/animal-search.component';
-import {Observable} from "rxjs";
+import {rxResource} from "@angular/core/rxjs-interop";
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [RouterLink, AnimalSearchComponent, AsyncPipe]
+    imports: [RouterLink, AnimalSearchComponent]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
     private animalService = inject(AnimalService);
 
-    animals$: Observable<Animal[]> | undefined = undefined;
+    protected animalsResource = rxResource({
+        params: () => ({}),
+
+        stream: ({params}) => this.animalService.getAnimals(),
+    });
 
     constructor() {
-    }
-
-    ngOnInit() {
-        this.animals$ = this.animalService.getAnimals();
     }
 }

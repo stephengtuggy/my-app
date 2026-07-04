@@ -1,8 +1,10 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 
 import {Animal} from '../animal.model';
 import {AnimalService} from '../animal.service';
 import {RouterLink} from '@angular/router';
+import {rxResource} from "@angular/core/rxjs-interop";
+import {tap} from "rxjs/operators";
 
 @Component({
     selector: 'app-animal-list',
@@ -11,21 +13,16 @@ import {RouterLink} from '@angular/router';
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [RouterLink]
 })
-export class AnimalListComponent implements OnInit {
-    private animalService = inject(AnimalService);
+export class AnimalListComponent {
+    private animalService: AnimalService = inject(AnimalService);
 
-    animals: Animal[] = new Array<Animal>();
+    protected animalsResource = rxResource({
+        params: () => ({}),
+
+        stream: ({params}) => this.animalService.getAnimals(),
+    });
 
     constructor() {
-    }
-
-    ngOnInit(): void {
-        this.getAnimals();
-    }
-
-    getAnimals(): void {
-        this.animalService.getAnimals()
-            .subscribe((animals: Animal[]) => this.animals = animals);
     }
 
     add(name: string): void {
@@ -33,14 +30,20 @@ export class AnimalListComponent implements OnInit {
         if (!name) {
             return;
         }
-        this.animalService.addAnimal({name} as Animal)
-            .subscribe((animal: Animal) => {
-                this.animals.push(animal);
-            });
+        this.animalService.addAnimal({animalName: name} as Animal)
+            .pipe(
+                tap({
+                    next: () => this.animalsResource.reload(),
+                })
+            );
     }
 
     delete(animal: Animal): void {
-        this.animals = this.animals.filter(a => a !== animal);
-        this.animalService.deleteAnimal(animal).subscribe(() => this.getAnimals());
+        this.animalService.deleteAnimal(animal)
+            .pipe(
+                tap({
+                    next: () => this.animalsResource.reload(),
+                })
+            );
     }
 }

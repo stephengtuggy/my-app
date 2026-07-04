@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { MessagesComponent } from './messages/messages.component';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
+import {MessagesComponent} from './messages/messages.component';
 
 @Component({
     selector: 'app-root',
@@ -10,5 +10,5 @@ import { MessagesComponent } from './messages/messages.component';
     imports: [RouterLink, RouterOutlet, MessagesComponent]
 })
 export class AppComponent {
-  title = 'Zoo Example';
+    title = 'Zoo Example';
 }
