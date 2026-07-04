@@ -1,22 +1,19 @@
 import {ActivatedRouteSnapshot, Params} from '@angular/router';
 
 export class MockActivatedRouteSnapshot extends ActivatedRouteSnapshot {
-  private innerTestParams?: Params;
+    private innerTestParams: Params;
 
-  constructor(testParams?: Params) {
-    super();
-    if (testParams) {
-      this.testParams = testParams;
-    } else {
-      this.testParams = null;
+    constructor(testParams: Params) {
+        super();
+        this.testParams = testParams;
+        this.innerTestParams = testParams;
     }
-  }
 
-  private get testParams() {
-    return this.innerTestParams;
-  }
+    private get testParams() {
+        return this.innerTestParams;
+    }
 
-  private set testParams(params: Params) {
-    this.innerTestParams = params;
-  }
+    private set testParams(params: Params) {
+        this.innerTestParams = params;
+    }
 }
