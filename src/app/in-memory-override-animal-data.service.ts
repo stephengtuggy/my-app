@@ -1,4 +1,4 @@
-import {Injectable, Service} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {InMemoryAnimalDataService} from "./in-memory-animal-data.service";
 
 @Injectable({
