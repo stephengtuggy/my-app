@@ -3,7 +3,7 @@ import {Type} from '@angular/core';
 import {Location} from '@angular/common';
 import {MockPlatformLocation} from '@angular/common/testing';
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {afterEach, beforeEach, describe, expect, it} from "vitest";
 
 import {AnimalDetailComponent} from './animal-detail.component';
@@ -16,13 +16,12 @@ describe('AnimalDetailComponent', () => {
     let fixture: ComponentFixture<AnimalDetailComponent>;
     let httpMock: HttpTestingController;
     let routeMock: MockActivatedRoute;
-    // let initialMockParams: Params;
+    let initialMockParams: Params;
     let locationMock: MockPlatformLocation;
 
     beforeEach(waitForAsync(() => {
-        // initialMockParams = {id: 11};
-        // routeMock = new MockActivatedRoute(initialMockParams);
-        routeMock = new MockActivatedRoute(undefined);
+        initialMockParams = {id: 11};
+        routeMock = new MockActivatedRoute(initialMockParams);
         locationMock = new MockPlatformLocation;
         TestBed.configureTestingModule({
             imports: [AnimalDetailComponent],
