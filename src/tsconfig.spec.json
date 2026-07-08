@@ -1,16 +1,21 @@
 {
   "angularCompilerOptions": {
-    "preserveWhitespaces": "off"
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    },
+    "preserveWhitespaces": "off",
+    "strictTemplates": true
   },
   "compileOnSave": false,
   "compilerOptions": {
-    "downlevelIteration": true,
     "importHelpers": true,
     "outDir": "../out-tsc/spec",
-    "baseUrl": "",
     "types": [
-      "jasmine",
-      "node"
+      "node",
+      "globals-vitest"
     ],
     "sourceMap": true,
     "declaration": false,

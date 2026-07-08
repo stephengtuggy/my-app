@@ -3,19 +3,17 @@ import {BehaviorSubject} from 'rxjs';
 import {MockActivatedRouteSnapshot} from './mock-activated-route.snapshot';
 
 export class MockActivatedRoute extends ActivatedRoute {
-  private innerTestParams?: Params;
-  private testParamsSubject?: BehaviorSubject<Params> = new BehaviorSubject(this.testParams);
-  private testParamMapSubject?: BehaviorSubject<ParamMap> = new BehaviorSubject(convertToParamMap(this.testParams));
+  private innerTestParams: Params;
+  private testParamsSubject: BehaviorSubject<Params> = new BehaviorSubject(this.testParams);
+  private testParamMapSubject: BehaviorSubject<ParamMap> = new BehaviorSubject(convertToParamMap(this.testParams));
 
-  override snapshot: MockActivatedRouteSnapshot = new MockActivatedRouteSnapshot();
+  override snapshot: MockActivatedRouteSnapshot;
 
-  constructor(testParams?: Params) {
-    super();
-    if (testParams) {
+  constructor(testParams: Params) {
+      super();
       this.testParams = testParams;
-    } else {
-      this.testParams = null;
-    }
+      this.snapshot = new MockActivatedRouteSnapshot(this.testParams);
+      this.innerTestParams = testParams;
   }
 
   private get testParams() {

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {beforeEach, describe, expect, it } from "vitest";
 
 import { MessagesComponent } from './messages.component';
 
@@ -8,8 +9,8 @@ describe('MessagesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessagesComponent ]
-    })
+    imports: [MessagesComponent]
+})
     .compileComponents();
   }));
 

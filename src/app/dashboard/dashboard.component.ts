@@ -1,24 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Animal } from '../animal.model';
-import { AnimalService } from '../animal.service';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {AnimalService} from '../animal.service';
+import {RouterLink} from '@angular/router';
+import {AnimalSearchComponent} from '../animal-search/animal-search.component';
+import {rxResource} from "@angular/core/rxjs-interop";
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [RouterLink, AnimalSearchComponent]
 })
-export class DashboardComponent implements OnInit {
-  animals: Animal[] = [];
+export class DashboardComponent {
+    private animalService = inject(AnimalService);
 
-  constructor(private animalService: AnimalService) { }
+    protected animalsResource = rxResource({
+        params: () => ({}),
 
-  ngOnInit() {
-    this.getAnimals();
-  }
+        stream: ({params}) => this.animalService.getAnimals(),
+    });
 
-  getAnimals(): void {
-    this.animalService.getAnimals()
-      .subscribe(animals => this.animals = animals.slice(0, 4));
-  }
+    constructor() {
+    }
 }

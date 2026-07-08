@@ -1,22 +1,26 @@
 <h2>Animals</h2>
 
 <div>
-  <label>Animal name:
-    <input #animalName />
-  </label>
-  <button (click)="add(animalName.value); animalName.value=''">
-    add
-  </button>
+    <label>Animal name:
+        <input #animalName/>
+    </label>
+    <button (click)="add(animalName.value); animalName.value=''">
+        add
+    </button>
 </div>
 
 <ul class="animals">
-  @for (animal of animals; track animal) {
-    <li>
-      <a routerLink="/animals/{{animal.id}}">
-        <span class="badge">{{animal.id}}</span> {{animal.name}}
-      </a>
-      <button class="delete" title="delete animal"
-      (click)="delete(animal)">x</button>
-    </li>
-  }
+    @if (animalsResource.isLoading()) {
+        <p>Loading…</p>
+    }
+    @for (animal of animalsResource.value(); track animal.id) {
+        <li>
+            <a routerLink="/animals/{{animal.id}}">
+                <span class="badge">{{ animal.id }}</span> {{ animal.animalName }}
+            </a>
+            <button class="delete" title="delete animal"
+                    (click)="delete(animal)">x
+            </button>
+        </li>
+    }
 </ul>

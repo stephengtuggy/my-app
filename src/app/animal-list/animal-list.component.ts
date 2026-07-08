@@ -1,41 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 
-import { Animal } from '../animal.model';
-import { AnimalService } from '../animal.service';
+import {Animal} from '../animal.model';
+import {AnimalService} from '../animal.service';
+import {RouterLink} from '@angular/router';
+import {rxResource} from "@angular/core/rxjs-interop";
+import {tap} from "rxjs/operators";
 
 @Component({
     selector: 'app-animal-list',
     templateUrl: './animal-list.component.html',
     styleUrls: ['./animal-list.component.css'],
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [RouterLink]
 })
-export class AnimalListComponent implements OnInit {
-  animals: Animal[];
+export class AnimalListComponent {
+    private animalService: AnimalService = inject(AnimalService);
 
-  constructor(private animalService: AnimalService) { }
+    protected animalsResource = rxResource({
+        params: () => ({}),
 
-  ngOnInit(): void {
-    this.getAnimals();
-  }
+        stream: ({params}) => this.animalService.getAnimals(),
+    });
 
-  getAnimals(): void {
-    this.animalService.getAnimals()
-        .subscribe(animals => this.animals = animals);
-  }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
+    constructor() {
     }
-    this.animalService.addAnimal({ name } as Animal)
-      .subscribe(animal => {
-        this.animals.push(animal);
-      });
-  }
 
-  delete(animal: Animal): void {
-    this.animals = this.animals.filter(a => a !== animal);
-    this.animalService.deleteAnimal(animal).subscribe();
-  }
+    add(name: string): void {
+        name = name.trim();
+        if (!name) {
+            return;
+        }
+        this.animalService.addAnimal({animalName: name} as Animal)
+            .pipe(
+                tap({
+                    next: () => this.animalsResource.reload(),
+                })
+            );
+    }
+
+    delete(animal: Animal): void {
+        this.animalService.deleteAnimal(animal)
+            .pipe(
+                tap({
+                    next: () => this.animalsResource.reload(),
+                })
+            );
+    }
 }

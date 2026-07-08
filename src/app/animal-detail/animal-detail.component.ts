@@ -1,42 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { Location } from '@angular/common';
+import {ChangeDetectionStrategy, Component, inject, OnInit, signal} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Location, UpperCasePipe} from '@angular/common';
 
-import { Animal } from '../animal.model';
-import { AnimalService } from '../animal.service';
+import {Animal} from '../animal.model';
+import {AnimalService} from '../animal.service';
+import {FormsModule} from '@angular/forms';
+import {form, FormField} from "@angular/forms/signals";
+import {tap} from "rxjs/operators";
 
 @Component({
     selector: 'app-animal-detail',
     templateUrl: './animal-detail.component.html',
     styleUrls: ['./animal-detail.component.css'],
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [FormsModule, UpperCasePipe, FormField]
 })
 export class AnimalDetailComponent implements OnInit {
-  animal: Animal;
+    private route = inject(ActivatedRoute);
+    private animalService = inject(AnimalService);
+    private location = inject(Location);
 
-  constructor(
-    private route: ActivatedRoute,
-    private animalService: AnimalService,
-    private location: Location
-  ) { }
+    animalModel = signal<Animal>({
+        animalName: '',
+        id: -1,
+    });
 
-  ngOnInit(): void {
-    this.getAnimal();
-  }
+    animalForm = form(this.animalModel);
 
-  getAnimal(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.animalService.getAnimal(id)
-      .subscribe(animal => this.animal = animal);
-  }
+    constructor() {
+    }
 
-  goBack(): void {
-    this.location.back();
-  }
+    ngOnInit(): void {
+        this.getAnimal();
+    }
 
-  save(): void {
-    this.animalService.updateAnimal(this.animal)
-      .subscribe(() => this.goBack());
-  }
+    getAnimal(): void {
+        const id: number = +(this.route?.snapshot?.paramMap?.get('id') ?? 0);
+        this.animalService.getAnimal(id)
+            .subscribe(animal => {
+                this.animalForm.animalName().value.set(animal.animalName);
+                this.animalForm.id().value.set(animal.id);
+            });
+    }
+
+    goBack(): void {
+        this.location.back();
+    }
+
+    save(): void {
+        this.animalService.updateAnimal({ animalName: this.animalForm.animalName().value(), id: this.animalForm.id().value()})
+            .pipe(
+                tap({
+                    next: () => this.goBack(),
+                }),
+            );
+    }
 
 }

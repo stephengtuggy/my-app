@@ -1,49 +1,49 @@
 import {TestBed, waitForAsync} from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
-import {Component, OnInit} from '@angular/core';
+import {AppComponent} from './app.component';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {beforeEach, describe, expect, it} from "vitest";
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        MockRouterOutlet,
-        MockMessageOutlet
-      ],
-    }).compileComponents();
-  }));
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [MockRouterOutlet,
+                MockMessageOutlet, AppComponent],
+        }).compileComponents();
+    }));
 
-  it('should create the app', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+    it('should create the app', waitForAsync(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app).toBeTruthy();
+    }));
 
-  it(`should have as title 'Zoo Example'`, waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Zoo Example');
-  }));
+    it(`should have as title 'Zoo Example'`, waitForAsync(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app.title).toEqual('Zoo Example');
+    }));
 
-  it('should render title in a h1 tag', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Zoo Example');
-  }));
+    it('should render title in a h1 tag', waitForAsync(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('h1').textContent).toContain('Zoo Example');
+    }));
 });
 
 @Component({
     selector: 'router-outlet',
     template: '',
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
-class MockRouterOutlet {}
+class MockRouterOutlet {
+}
 
 @Component({
     selector: 'app-messages',
     template: '',
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
-class MockMessageOutlet {}
+class MockMessageOutlet {
+}

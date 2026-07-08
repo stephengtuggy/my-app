@@ -1,3 +1,15 @@
-<p>
-  food-detail works!
-</p>
+@if (foodModel()) {
+    <div>
+        <form>
+            <h2>{{ foodForm.name().value() | uppercase }} Details</h2>
+            <div>id: {{ foodForm.id().value() }}</div>
+            <div>
+                <label>name:
+                    <input type='text' [formField]="foodForm.name" placeholder="name"/>
+                </label>
+            </div>
+            <button (click)="goBack()">go back</button>
+            <button (click)="save()">save</button>
+        </form>
+    </div>
+}

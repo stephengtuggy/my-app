@@ -1,15 +1,24 @@
 <div id="search-component">
-  <h4><label for="search-box">Animal Search</label></h4>
+    <search>
+        <form>
+            <h4><label for="search-box">Animal Search</label></h4>
+            <input #searchBox type="search" name="search-box" id="search-box"
+                   (input)="query.set($event.target.value)"/>
+        </form>
+    </search>
 
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-  <ul class="search-result">
-    @for (animal of animals$ | async; track animal) {
-      <li >
-        <a routerLink="/detail/{{animal.id}}">
-          {{animal.name}}
-        </a>
-      </li>
-    }
-  </ul>
+    <section>
+        <ul class="search-result">
+            @if (resultsResource.isLoading()) {
+                <p>Searching…</p>
+            }
+            @for (animal of resultsResource.value(); track animal.id) {
+                <li>
+                    <a routerLink="/animals/{{ animal.id }}">
+                        {{ animal.animalName }}
+                    </a>
+                </li>
+            }
+        </ul>
+    </section>
 </div>

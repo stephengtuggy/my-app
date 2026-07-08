@@ -1,14 +1,17 @@
 <h3>Top Animals</h3>
 
 <div class="grid grid-pad">
-  @for (animal of animals; track animal) {
-    <a class="col-1-4"
-      routerLink="/animals/{{animal.id}}">
-      <div class="module animal">
-        <h4>{{animal.name}}</h4>
-      </div>
-    </a>
-  }
+    @if (animalsResource.isLoading()) {
+        <p>Loading…</p>
+    }
+    @for (animal of animalsResource.value(); track animal.id) {
+        <a class="col-1-4"
+           routerLink="/animals/{{animal.id}}">
+            <div class="module animal">
+                <h4>{{ animal.animalName }}</h4>
+            </div>
+        </a>
+    }
 </div>
 
-<app-animal-search></app-animal-search>
+<app-animal-search/>

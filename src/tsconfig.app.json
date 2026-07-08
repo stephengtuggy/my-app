@@ -1,13 +1,18 @@
 {
   "angularCompilerOptions": {
-    "preserveWhitespaces": "off"
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    },
+    "preserveWhitespaces": "off",
+    "strictTemplates": true
   },
   "compileOnSave": false,
   "compilerOptions": {
-    "downlevelIteration": true,
     "importHelpers": true,
     "outDir": "../out-tsc/app",
-    "baseUrl": "",
     "types": [],
     "sourceMap": true,
     "declaration": false,

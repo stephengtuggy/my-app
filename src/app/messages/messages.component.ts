@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 
 import { MessageService } from '../message.service';
 
@@ -6,11 +6,13 @@ import { MessageService } from '../message.service';
     selector: 'app-messages',
     templateUrl: './messages.component.html',
     styleUrls: ['./messages.component.css'],
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class MessagesComponent implements OnInit {
+  messageService = inject(MessageService);
 
-  constructor(public messageService: MessageService) { }
+
+  constructor() { }
 
   ngOnInit(): void {
   }

@@ -1,14 +1,14 @@
 import {TestBed} from '@angular/core/testing';
 
-import {MessageService} from './message.service';
+import {InMemoryOverrideAnimalDataService} from './in-memory-override-animal-data.service';
 import {beforeEach, describe, expect, it} from "vitest";
 
-describe('MessageService', () => {
-    let service: MessageService;
+describe('InMemoryOverrideAnimalDataService', () => {
+    let service: InMemoryOverrideAnimalDataService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(MessageService);
+        service = TestBed.inject(InMemoryOverrideAnimalDataService);
     });
 
     it('should be created', () => {
