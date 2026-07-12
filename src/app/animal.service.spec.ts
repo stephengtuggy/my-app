@@ -1,4 +1,4 @@
-import {inject, TestBed, waitForAsync} from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 import {Type} from '@angular/core';
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {afterEach, beforeEach, describe, expect, it} from "vitest";
@@ -8,16 +8,10 @@ import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/commo
 describe('AnimalService', () => {
     let httpMock: HttpTestingController;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [],
             providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting(), AnimalService]
-        });
-    }));
-
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [AnimalService]
         });
         httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
     });
