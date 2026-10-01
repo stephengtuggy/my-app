@@ -1,11 +1,12 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {Type} from '@angular/core';
+import {DebugElement, Type} from '@angular/core';
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {afterEach, beforeEach, describe, expect, it} from "vitest";
 
 import {AnimalSearchComponent} from './animal-search.component';
 import {provideHttpClient} from '@angular/common/http';
 import {provideRouter} from "@angular/router";
+import {By} from "@angular/platform-browser";
 
 describe('AnimalSearchComponent', () => {
     let component: AnimalSearchComponent;
@@ -34,5 +35,12 @@ describe('AnimalSearchComponent', () => {
 
     it('should be created', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should display caption "Animal Search" in h4 tag', async () => {
+        fixture.detectChanges();
+        const h4De: DebugElement = fixture.debugElement.query(By.css('h4'));
+        const h4El: HTMLElement = h4De.nativeElement;
+        expect(h4El.textContent).toEqual("Animal Search");
     });
 });

@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {ChangeDetectionStrategy, Component, Type} from '@angular/core';
 import {beforeEach, describe, expect, it} from "vitest";
 import {HttpTestingController, provideHttpClientTesting} from "@angular/common/http/testing";
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from "@angular/common/http";
+import {provideHttpClient} from "@angular/common/http";
 import {provideRouter} from "@angular/router";
 
 describe('AppComponent', () => {
