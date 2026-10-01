@@ -15,7 +15,8 @@ describe('AnimalSearchComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [AnimalSearchComponent],
-            providers: [provideHttpClient(),
+            providers: [
+                provideHttpClient(),
                 provideHttpClientTesting(),
                 provideRouter([]),
                 AnimalSearchComponent,
