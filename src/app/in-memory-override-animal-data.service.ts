@@ -1,9 +1,7 @@
-import {Injectable} from '@angular/core';
+import { Service } from '@angular/core';
 import {InMemoryAnimalDataService} from "./in-memory-animal-data.service";
 
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class InMemoryOverrideAnimalDataService extends InMemoryAnimalDataService {
     // Overrides id generator and delivers next available `id`, starting with 1001.
     genId<T extends {id: any}>(collection: T[], collectionName: string): any {

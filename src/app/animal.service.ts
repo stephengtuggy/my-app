@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import { inject, Service } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequestOptions} from '@angular/common/http';
 
 import {Observable, of} from 'rxjs';
@@ -8,9 +8,7 @@ import {Animal} from './animal.model';
 import {MessageService} from './message.service';
 
 
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class AnimalService {
     private http: HttpClient = inject(HttpClient);
     private messageService: MessageService = inject(MessageService);
