@@ -12,13 +12,11 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^22.0.2",
     "@angular/common": "^22.0.2",
     "@angular/compiler": "^22.0.2",
     "@angular/core": "^22.0.2",
     "@angular/forms": "^22.0.2",
     "@angular/platform-browser": "^22.0.2",
-    "@angular/platform-browser-dynamic": "^22.0.2",
     "@angular/platform-server": "^22.0.2",
     "@angular/router": "^22.0.2",
     "angular-in-memory-web-api": "^0.22.0",
