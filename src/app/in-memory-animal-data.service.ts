@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Service } from '@angular/core';
 import {InMemoryDbService, RequestInfo} from 'angular-in-memory-web-api';
 
 import {Animal} from './animal.model';
@@ -12,9 +12,7 @@ interface AnimalFoodResponse {
     animalsFoods: AnimalFood[];
 }
 
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class InMemoryAnimalDataService implements InMemoryDbService {
 
     constructor() {
