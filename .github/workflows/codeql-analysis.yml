@@ -28,7 +28,7 @@ jobs:
       actions: read
       contents: read
 
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-26.04' }}
+    runs-on: ubuntu-26.04
 
     strategy:
       fail-fast: false
