@@ -9,7 +9,7 @@ import {RouterLink} from "@angular/router";
     selector: 'app-food-list',
     templateUrl: './food-list.component.html',
     styleUrls: ['./food-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         RouterLink
     ]

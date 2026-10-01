@@ -17,7 +17,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         UpperCasePipe,
         FormField
     ],
-    changeDetection: ChangeDetectionStrategy.Eager
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FoodDetailComponent implements OnInit {
     private route = inject(ActivatedRoute);

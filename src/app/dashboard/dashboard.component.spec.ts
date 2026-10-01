@@ -52,7 +52,7 @@ describe('DashboardComponent', () => {
 @Component({
     selector: 'app-animal-search',
     template: '',
-    changeDetection: ChangeDetectionStrategy.Eager
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 class MockAnimalSearchComponent {
 }

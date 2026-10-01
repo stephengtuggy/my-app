@@ -6,7 +6,7 @@ import {MessagesComponent} from './messages/messages.component';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, RouterOutlet, MessagesComponent]
 })
 export class AppComponent {

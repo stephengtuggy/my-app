@@ -8,7 +8,7 @@ import {rxResource} from "@angular/core/rxjs-interop";
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, AnimalSearchComponent]
 })
 export class DashboardComponent {

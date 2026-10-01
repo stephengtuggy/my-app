@@ -12,6 +12,7 @@ describe('MessagesComponent', () => {
     let component: MessagesComponent;
     let fixture: ComponentFixture<MessagesComponent>;
     let httpMock: HttpTestingController;
+    let msgService: MessageService;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -25,10 +26,14 @@ describe('MessagesComponent', () => {
         })
             .compileComponents();
 
+        msgService = TestBed.inject(MessageService);
         httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
         fixture = TestBed.createComponent(MessagesComponent);
         component = fixture.componentInstance;
         expect(component).toBeDefined();
+
+        msgService.add("Test Message 1");
+        msgService.add("Test Message 2");
     });
 
     afterEach(() => {
@@ -39,22 +44,20 @@ describe('MessagesComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    // it('should display page title "Messages" in h2 tag', async () => {
-    //     fixture.detectChanges();
-    //     const msgSvc: MessageService = component.messageService;
-    //     msgSvc.add("Test Message");
-    //
-    //     await fixture.whenStable();
-    //     await expect.poll(() => fixture.debugElement.query(By.css('h2')), {
-    //         timeout: 2500,
-    //         interval: 20
-    //     }).toBeDefined();
-    //     const h2De: DebugElement = fixture.debugElement.query(By.css('h2'));
-    //     await expect.poll(() => h2De.nativeElement, {
-    //         timeout: 2500,
-    //         interval: 20
-    //     }).toBeDefined();
-    //     const h2El: HTMLElement = h2De.nativeElement;
-    //     expect(h2El.textContent).toEqual("Messages");
-    // });
+    it('should display page title "Messages" in h2 tag', async () => {
+        fixture.detectChanges();
+
+        await fixture.whenStable();
+        await expect.poll(() => fixture.debugElement.query(By.css('h2')), {
+            timeout: 2500,
+            interval: 20
+        }).toBeDefined();
+        const h2De: DebugElement = fixture.debugElement.query(By.css('h2'));
+        await expect.poll(() => h2De.nativeElement, {
+            timeout: 2500,
+            interval: 20
+        }).toBeDefined();
+        const h2El: HTMLElement = h2De.nativeElement;
+        expect(h2El.textContent).toEqual("Messages");
+    });
 });

@@ -12,7 +12,7 @@ import {tap} from "rxjs/operators";
     selector: 'app-animal-detail',
     templateUrl: './animal-detail.component.html',
     styleUrls: ['./animal-detail.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule, UpperCasePipe, FormField]
 })
 export class AnimalDetailComponent implements OnInit {
