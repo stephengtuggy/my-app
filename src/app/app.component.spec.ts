@@ -14,13 +14,17 @@ describe('AppComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [MockMessageOutlet,
-                AppComponent],
-            providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()),
+            imports: [
+                MockMessageOutlet,
+                AppComponent,
+            ],
+            providers: [
+                provideHttpClient(),
                 provideHttpClientTesting(),
                 provideRouter([]),
                 MockMessageOutlet,
-                AppComponent]
+                AppComponent,
+            ]
         }).compileComponents();
 
         httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);

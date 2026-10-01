@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Type} from '@angular/core';
 import {Location} from '@angular/common';
 import {MockPlatformLocation} from '@angular/common/testing';
@@ -8,7 +8,7 @@ import {afterEach, beforeEach, describe, expect, it} from "vitest";
 
 import {AnimalDetailComponent} from './animal-detail.component';
 import {MockActivatedRoute} from './mock-activated.route';
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
 
 
 describe('AnimalDetailComponent', () => {
@@ -19,11 +19,11 @@ describe('AnimalDetailComponent', () => {
     let initialMockParams: Params;
     let locationMock: MockPlatformLocation;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         initialMockParams = {id: 11};
         routeMock = new MockActivatedRoute(initialMockParams);
         locationMock = new MockPlatformLocation;
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [AnimalDetailComponent],
             providers: [
                 {
@@ -32,31 +32,22 @@ describe('AnimalDetailComponent', () => {
                 {
                     provide: Location, useValue: locationMock,
                 },
-                provideHttpClient(withXhr(), withInterceptorsFromDi()),
+                provideHttpClient(),
                 provideHttpClientTesting()
             ]
-        })
-            .compileComponents();
-    }));
+        }).compileComponents();
 
-    beforeEach(() => {
+        httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
         fixture = TestBed.createComponent(AnimalDetailComponent);
         component = fixture.componentInstance;
-        httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
-        // fixture.detectChanges();
+        expect(component).toBeDefined();
     });
 
     afterEach(() => {
         httpMock.verify();
     });
 
-    it('should be truthy', () => {
-        // fixture.detectChanges();
-
+    it('should be created', () => {
         expect(component).toBeTruthy();
-
-        // const dummyAnimal: Animal = { id: 11, name: 'dummyAnimal' };
-        // const req = httpMock.expectOne('api/animals/11');
-        // req.flush(dummyAnimal);
     });
 });

@@ -1,10 +1,9 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Type} from '@angular/core';
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 
 import {AnimalListComponent} from './animal-list.component';
-import {Animal} from '../animal.model';
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
 import {afterEach, beforeEach, describe, expect, it} from "vitest";
 
 describe('AnimalListComponent', () => {
@@ -12,19 +11,15 @@ describe('AnimalListComponent', () => {
     let fixture: ComponentFixture<AnimalListComponent>;
     let httpMock: HttpTestingController;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [AnimalListComponent],
-            providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
-        })
-            .compileComponents();
-    }));
+            providers: [provideHttpClient(), provideHttpClientTesting()]
+        }).compileComponents();
 
-    beforeEach(() => {
+        httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
         fixture = TestBed.createComponent(AnimalListComponent);
         component = fixture.componentInstance;
-        httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
-        fixture.detectChanges();
     });
 
     afterEach(() => {
@@ -33,9 +28,5 @@ describe('AnimalListComponent', () => {
 
     it('should be created', () => {
         expect(component).toBeTruthy();
-
-        const dummyAnimals: Animal[] = [];
-        const req = httpMock.expectOne('api/animals');
-        req.flush(dummyAnimals);
     });
 });

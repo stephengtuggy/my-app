@@ -3,7 +3,7 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 
 import { environment } from './environments/environment';
 import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
-import { provideHttpClient, withXhr, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryOverrideAnimalDataService } from './app/in-memory-override-animal-data.service';
 import { AnimalService } from './app/animal.service';
@@ -20,7 +20,7 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
     providers: [
         importProvidersFrom(BrowserModule, FormsModule, AppRoutingModule, CoreModule),
-        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClient(),
         importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryOverrideAnimalDataService, { delay: 600 })),
         AnimalService,
         FoodService

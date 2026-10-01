@@ -1,27 +1,24 @@
-import {inject, TestBed} from '@angular/core/testing';
-import {afterEach, beforeEach, describe, expect, it} from "vitest";
-
+import {TestBed} from '@angular/core/testing';
+import {beforeEach, describe, it} from "vitest";
 import {FoodService} from './food.service';
-import {HttpTestingController, provideHttpClientTesting} from "@angular/common/http/testing";
-import {Type} from "@angular/core";
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from "@angular/common/http";
+import {doesNotThrow} from "node:assert";
 
 describe('FoodService', () => {
-    let httpMock: HttpTestingController;
+    let service: FoodService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [],
-            providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting(), FoodService]
-        });
-        httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
+        service = TestBed.inject(FoodService);
     });
 
-    afterEach(() => {
-        httpMock.verify();
-    })
+    it('does not throw on valid food ID', () => {
+        doesNotThrow(() => {
+            service.getFoodNo404(21);
+        });
+    });
 
-    it('should be created', inject([FoodService], (service: FoodService) => {
-        expect(service).toBeTruthy();
-    }));
+    it('does not throw on invalid food ID', () => {
+        doesNotThrow(() => {
+            service.getFoodNo404(2000000000);
+        });
+    });
 });
