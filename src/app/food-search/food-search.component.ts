@@ -10,7 +10,7 @@ import {rxResource} from "@angular/core/rxjs-interop";
     imports: [
         RouterLink
     ],
-    changeDetection: ChangeDetectionStrategy.Eager
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FoodSearchComponent {
     private foodService: FoodService = inject(FoodService);

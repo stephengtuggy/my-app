@@ -10,7 +10,7 @@ import {tap} from "rxjs/operators";
     selector: 'app-animal-list',
     templateUrl: './animal-list.component.html',
     styleUrls: ['./animal-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink]
 })
 export class AnimalListComponent {

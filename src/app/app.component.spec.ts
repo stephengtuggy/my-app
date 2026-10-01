@@ -55,7 +55,7 @@ describe('AppComponent', () => {
 @Component({
     selector: 'app-messages',
     template: '',
-    changeDetection: ChangeDetectionStrategy.Eager
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 class MockMessageOutlet {
 }

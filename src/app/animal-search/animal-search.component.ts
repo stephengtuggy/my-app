@@ -8,7 +8,7 @@ import {rxResource} from "@angular/core/rxjs-interop";
     selector: 'app-animal-search',
     templateUrl: './animal-search.component.html',
     styleUrls: ['./animal-search.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink]
 })
 export class AnimalSearchComponent {
