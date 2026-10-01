@@ -4,13 +4,12 @@ import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {beforeEach, describe, expect, it} from "vitest";
 
 import {DashboardComponent} from './dashboard.component';
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
 import {By} from "@angular/platform-browser";
 
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
     let fixture: ComponentFixture<DashboardComponent>;
-    // let httpMock: HttpTestingController;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -26,24 +25,14 @@ describe('DashboardComponent', () => {
             ]
         }).compileComponents();
 
-        // httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
         fixture = TestBed.createComponent(DashboardComponent);
         component = fixture.componentInstance;
         expect(component).toBeDefined();
     });
 
-    // afterEach(() => {
-    //     httpMock.verify();
-    // });
-
     it('should be created', () => {
         expect(component).toBeTruthy();
     });
-
-    // it('should make a single request to api/animals', async () => {
-    //     httpMock.expectOne('api/animals');
-    //     await fixture.whenStable();
-    // });
 
     it('should display title "Top Animals" in h3', async () => {
         fixture.detectChanges();
