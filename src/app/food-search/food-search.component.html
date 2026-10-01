@@ -1,11 +1,9 @@
 <div id="search-component">
-    <search>
-        <form>
-            <h4><label for="search-box">Food Search</label></h4>
-            <input #searchBox type="search" name="search-box" id="search-box"
-                   (input)="query.set($event.target.value)"/>
-        </form>
-    </search>
+    <form>
+        <h4><label for="search-box">Food Search</label></h4>
+        <input #searchBox type="search" name="search-box" id="search-box"
+               (input)="query.set($event.target.value)"/>
+    </form>
 
     <section>
         <ul class="search-result">

@@ -1,30 +1,36 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {ChangeDetectionStrategy, Component, Type} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ChangeDetectionStrategy, Component, DebugElement, Type} from '@angular/core';
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {afterEach, beforeEach, describe, expect, it} from "vitest";
 
 import {DashboardComponent} from './dashboard.component';
-import {Animal} from '../animal.model';
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
+import {By} from "@angular/platform-browser";
 
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
     let fixture: ComponentFixture<DashboardComponent>;
     let httpMock: HttpTestingController;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            imports: [DashboardComponent,
-                MockAnimalSearchComponent],
-            providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
-        })
-            .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [
+                MockAnimalSearchComponent,
+                DashboardComponent,
+            ],
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                MockAnimalSearchComponent,
+                DashboardComponent,
+            ]
+        }).compileComponents();
 
+        httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
         fixture = TestBed.createComponent(DashboardComponent);
         component = fixture.componentInstance;
-        httpMock = fixture.debugElement.injector.get<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
-        fixture.detectChanges();
-    }));
+        expect(component).toBeDefined();
+    });
 
     afterEach(() => {
         httpMock.verify();
@@ -32,10 +38,14 @@ describe('DashboardComponent', () => {
 
     it('should be created', () => {
         expect(component).toBeTruthy();
+    });
 
-        const dummyAnimals: Animal[] = [];
-        const req = httpMock.expectOne('api/animals');
-        req.flush(dummyAnimals);
+    it('should display page title "Top Animals" in h3', async () => {
+        fixture.detectChanges();
+        httpMock.expectOne('api/animals');
+        const h3De: DebugElement = fixture.debugElement.query(By.css('h3'));
+        const h3El: HTMLElement = h3De.nativeElement;
+        expect(h3El.textContent).toEqual("Top Animals");
     });
 });
 

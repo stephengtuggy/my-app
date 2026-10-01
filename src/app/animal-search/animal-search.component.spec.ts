@@ -1,29 +1,32 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {Type} from '@angular/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {DebugElement, Type} from '@angular/core';
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {afterEach, beforeEach, describe, expect, it} from "vitest";
 
 import {AnimalSearchComponent} from './animal-search.component';
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
+import {provideRouter} from "@angular/router";
+import {By} from "@angular/platform-browser";
 
 describe('AnimalSearchComponent', () => {
     let component: AnimalSearchComponent;
     let fixture: ComponentFixture<AnimalSearchComponent>;
     let httpMock: HttpTestingController;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [AnimalSearchComponent],
-            providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
-        })
-            .compileComponents();
-    }));
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                provideRouter([]),
+                AnimalSearchComponent,
+            ]
+        }).compileComponents();
 
-    beforeEach(() => {
+        httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
         fixture = TestBed.createComponent(AnimalSearchComponent);
         component = fixture.componentInstance;
-        httpMock = TestBed.inject<HttpTestingController>(HttpTestingController as Type<HttpTestingController>);
-        fixture.detectChanges();
     });
 
     afterEach(() => {
@@ -32,5 +35,12 @@ describe('AnimalSearchComponent', () => {
 
     it('should be created', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should display caption "Animal Search" in h4 tag', async () => {
+        fixture.detectChanges();
+        const h4De: DebugElement = fixture.debugElement.query(By.css('h4'));
+        const h4El: HTMLElement = h4De.nativeElement;
+        expect(h4El.textContent).toEqual("Animal Search");
     });
 });
