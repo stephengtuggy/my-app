@@ -43,7 +43,7 @@
   },
   "overrides": {
     "chokidar": "5.0.0",
-    "readdirp": "5.0.0"
+    "readdirp": "5.1.1"
   },
   "allowScripts": {
     "core-js@3.49.0": true,
